@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Покупка билета
+{% endblock %}
+
+{% block content %}
+
+<h2>
+    Покупка билета
+</h2>
+
+<p>
+    Фильм:
+    {{ session.movie.title }}
+</p>
+
+<p>
+    Сеанс:
+    {{ session.start_time }}
+</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Номер места
+        </label>
+
+        <input
+            type="number"
+            name="seat_number"
+            class="form-control"
+            required>
+
+    </div>
+
+    <button
+        type="submit"
+        class="btn btn-primary">
+
+        Купить билет
+
+    </button>
+
+</form>
+
+{% endblock %}

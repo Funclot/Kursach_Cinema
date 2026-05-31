@@ -75,6 +75,14 @@
                 <br>
 
                 Цена: {{ session.price }} ₽
+                <br><br>
+
+                <a href="{% url 'buy_ticket' session.id %}"
+                   class="btn btn-success btn-sm">
+
+                    Купить билет
+
+                </a>
 
             </div>
         </div>
