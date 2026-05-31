@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ title }}</h2>
+
+{% for movie in movies %}
+    <h3>{{ movie.title }}</h3>
+{% empty %}
+    <p>Фильмов пока нет</p>
+{% endfor %}
+
+{% endblock %}

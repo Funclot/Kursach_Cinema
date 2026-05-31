@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>
+        {% block title %}
+            Кинотеатр
+        {% endblock %}
+    </title>
 </head>
 <body>
+
+<header>
+    <h1>CinemaHub</h1>
+
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/admin/">Админка</a>
+    </nav>
+
+    <hr>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
 
 </body>
 </html>
