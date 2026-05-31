@@ -64,3 +64,20 @@ def buy_ticket(request, session_id):
         'cinema/buy_ticket.html',
         context
     )
+
+@login_required
+def my_tickets(request):
+
+    tickets = Ticket.objects.filter(
+        user=request.user
+    ).order_by('-purchase_date')
+
+    context = {
+        'tickets': tickets
+    }
+
+    return render(
+        request,
+        'cinema/my_tickets.html',
+        context
+    )

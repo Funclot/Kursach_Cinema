@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Мои билеты
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Мои билеты
+</h2>
+
+{% for ticket in tickets %}
+
+<div class="card mb-3 shadow-sm">
+
+    <div class="card-body">
+
+        <h5>
+            {{ ticket.session.movie.title }}
+        </h5>
+
+        <p>
+            Сеанс:
+            {{ ticket.session.start_time }}
+        </p>
+
+        <p>
+            Зал:
+            {{ ticket.session.hall }}
+        </p>
+
+        <p>
+            Место:
+            {{ ticket.seat_number }}
+        </p>
+
+        <p>
+            Цена:
+            {{ ticket.session.price }} ₽
+        </p>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p>У вас пока нет билетов.</p>
+
+{% endfor %}
+
+{% endblock %}
