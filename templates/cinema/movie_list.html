@@ -6,16 +6,55 @@
 
 {% block content %}
 
-<h2>{{ title }}</h2>
+<h2 class="mb-4">
+    {{ title }}
+</h2>
+
+<div class="row">
 
 {% for movie in movies %}
-    <h3>
-    <a href="{% url 'movie_detail' movie.id %}">
-        {{ movie.title }}
-    </a>
-    </h3>
+
+<div class="col-md-4 mb-4">
+
+    <div class="card h-100 shadow-sm">
+
+        {% if movie.poster %}
+            <img src="{{ movie.poster.url }}"
+                 class="card-img-top"
+                 alt="{{ movie.title }}">
+        {% endif %}
+
+        <div class="card-body">
+
+            <h5 class="card-title">
+                {{ movie.title }}
+            </h5>
+
+            <p class="card-text">
+                {{ movie.genre }}
+            </p>
+
+            <p class="card-text">
+                {{ movie.duration }} мин.
+            </p>
+
+            <a href="{% url 'movie_detail' movie.id %}"
+               class="btn btn-primary shadow-sm">
+                Подробнее
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
 {% empty %}
-    <p>Фильмов пока нет</p>
+
+<p>Фильмов пока нет</p>
+
 {% endfor %}
+
+</div>
 
 {% endblock %}

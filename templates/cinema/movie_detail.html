@@ -6,26 +6,62 @@
 
 {% block content %}
 
-<h2>{{ movie.title }}</h2>
+<div class="row">
 
-<p>
-    Жанр: {{ movie.genre }}
-</p>
+    <div class="col-md-4">
 
-<p>
-    Продолжительность:
-    {{ movie.duration }} мин.
-</p>
+        {% if movie.poster %}
+            <img src="{{ movie.poster.url }}"
+                 class="img-fluid rounded shadow"
+                 alt="{{ movie.title }}">
+        {% else %}
 
-<p>
-    Дата выхода:
-    {{ movie.release_date }}
-</p>
+            <div class="card">
+                <div class="card-body text-center">
+                    Постер отсутствует
+                </div>
+            </div>
 
-<p>
-    {{ movie.description }}
-</p>
+        {% endif %}
 
-<a href="/">Назад к афише</a>
+    </div>
+
+    <div class="col-md-8">
+
+        <h2>{{ movie.title }}</h2>
+
+        <hr>
+
+        <p>
+            <strong>Жанр:</strong>
+            {{ movie.genre }}
+        </p>
+
+        <p>
+            <strong>Продолжительность:</strong>
+            {{ movie.duration }} мин.
+        </p>
+
+        <p>
+            <strong>Дата выхода:</strong>
+            {{ movie.release_date }}
+        </p>
+
+        <hr>
+
+        <h4>Описание</h4>
+
+        <p>
+            {{ movie.description }}
+        </p>
+
+        <a href="/"
+           class="btn btn-secondary">
+            Назад
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}
