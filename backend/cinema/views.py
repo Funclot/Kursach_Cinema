@@ -1,6 +1,5 @@
-from django.shortcuts import render
-from .models import Movie
 from django.shortcuts import render, get_object_or_404
+from .models import Movie
 
 def movie_list(request):
     movies = Movie.objects.all()

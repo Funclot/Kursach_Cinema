@@ -55,6 +55,36 @@
             {{ movie.description }}
         </p>
 
+        <hr>
+
+        <h4>Сеансы</h4>
+
+        {% for session in movie.sessions.all %}
+
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+
+                <strong>
+                    {{ session.start_time }}
+                </strong>
+
+                <br>
+
+                Зал: {{ session.hall }}
+
+                <br>
+
+                Цена: {{ session.price }} ₽
+
+            </div>
+        </div>
+
+        {% empty %}
+
+        <p>Сеансов пока нет.</p>
+
+        {% endfor %}
+
         <a href="/"
            class="btn btn-secondary">
             Назад
