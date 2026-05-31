@@ -9,7 +9,11 @@
 <h2>{{ title }}</h2>
 
 {% for movie in movies %}
-    <h3>{{ movie.title }}</h3>
+    <h3>
+    <a href="{% url 'movie_detail' movie.id %}">
+        {{ movie.title }}
+    </a>
+    </h3>
 {% empty %}
     <p>Фильмов пока нет</p>
 {% endfor %}
