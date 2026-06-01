@@ -41,6 +41,11 @@
             {{ profile.bio }}
         </p>
 
+        <p>
+            <strong>Куплено билетов:</strong>
+            {{ tickets_count }}
+        </p>
+
         <a href="{% url 'edit_profile' %}"
            class="btn btn-primary mt-3">
 

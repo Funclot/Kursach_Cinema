@@ -14,7 +14,8 @@ def profile(request):
     )
 
     context = {
-        'profile': profile
+        'profile': profile,
+        'tickets_count': request.user.tickets.count()
     }
 
     return render(
