@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    {{ title }}
+</h2>
+
+{% for session in sessions %}
+
+<div class="card mb-3 shadow-sm">
+
+    <div class="card-body">
+
+        <h5>
+            {{ session.movie.title }}
+        </h5>
+
+        <p>
+            Дата и время:
+            {{ session.start_time }}
+        </p>
+
+        <p>
+            Зал:
+            {{ session.hall }}
+        </p>
+
+        <p>
+            Цена:
+            {{ session.price }} ₽
+        </p>
+
+        <a href="{% url 'buy_ticket' session.id %}"
+           class="btn btn-success">
+
+            Купить билет
+
+        </a>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p>Сеансов пока нет.</p>
+
+{% endfor %}
+
+{% endblock %}

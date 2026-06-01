@@ -81,3 +81,18 @@ def my_tickets(request):
         'cinema/my_tickets.html',
         context
     )
+def session_list(request):
+
+    sessions = Session.objects.select_related(
+        'movie'
+    ).order_by('start_time')
+
+    context = {
+        'sessions': sessions
+    }
+
+    return render(
+        request,
+        'cinema/session_list.html',
+        context
+    )

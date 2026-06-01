@@ -3,7 +3,8 @@ from .views import (
     movie_list,
     movie_detail,
     buy_ticket,
-    my_tickets
+    my_tickets,
+    session_list
 )
 
 urlpatterns = [
@@ -25,5 +26,10 @@ urlpatterns = [
         'my-tickets/',
         my_tickets,
         name='my_tickets'
+    ),
+    path(
+        'sessions/',
+        session_list,
+        name='session_list'
     ),
 ]
