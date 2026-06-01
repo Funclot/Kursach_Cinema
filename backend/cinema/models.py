@@ -17,6 +17,10 @@ class Movie(models.Model):
 
     is_active = models.BooleanField(default=True)
 
+    trailer_url = models.URLField(
+        blank=True
+    )
+
     genre = models.ForeignKey(
         Genre,
         on_delete=models.PROTECT,

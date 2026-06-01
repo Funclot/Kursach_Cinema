@@ -56,6 +56,23 @@
         </p>
 
         <hr>
+        {% if movie.trailer_url %}
+
+        <hr>
+
+        <h4>Трейлер</h4>
+
+        <div class="ratio ratio-16x9">
+
+            <iframe
+                    src="{{ movie.trailer_url }}"
+                    title="Trailer"
+                    allowfullscreen>
+            </iframe>
+
+        </div>
+
+        {% endif %}
 
         <h4>Сеансы</h4>
 
