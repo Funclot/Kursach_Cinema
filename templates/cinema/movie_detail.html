@@ -58,7 +58,7 @@
         <hr>
         {% if movie.trailer_url %}
 
-        <hr>
+
 
         <h4>Трейлер</h4>
 
@@ -82,7 +82,7 @@
             <div class="card-body">
 
                 <strong>
-                    {{ session.start_time }}
+                    {{ session.start_time|date:"d.m.Y H:i" }}
                 </strong>
 
                 <br>
@@ -110,10 +110,12 @@
 
         {% endfor %}
 
-        <a href="/"
-           class="btn btn-secondary">
-            Назад
-        </a>
+        <div class="mb-5">
+            <a href="/"
+               class="btn btn-secondary mt-4">
+                К афише
+            </a>
+        </div>
 
     </div>
 

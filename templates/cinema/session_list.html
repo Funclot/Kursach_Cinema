@@ -14,33 +14,54 @@
 
 <div class="card mb-3 shadow-sm">
 
-    <div class="card-body">
+    <div class="row g-0">
 
-        <h5>
-            {{ session.movie.title }}
-        </h5>
+        <div class="col-md-2">
 
-        <p>
-            Дата и время:
-            {{ session.start_time }}
-        </p>
+            {% if session.movie.poster %}
 
-        <p>
-            Зал:
-            {{ session.hall }}
-        </p>
+                <img
+                    src="{{ session.movie.poster.url }}"
+                    class="img-fluid rounded-start"
+                    alt="{{ session.movie.title }}">
 
-        <p>
-            Цена:
-            {{ session.price }} ₽
-        </p>
+            {% endif %}
 
-        <a href="{% url 'buy_ticket' session.id %}"
-           class="btn btn-success">
+        </div>
 
-            Купить билет
+        <div class="col-md-10">
 
-        </a>
+            <div class="card-body">
+
+                <h5>
+                    {{ session.movie.title }}
+                </h5>
+
+                <p>
+                    Дата и время:
+                    {{ session.start_time|date:"d.m.Y H:i" }}
+                </p>
+
+                <p>
+                    Зал:
+                    {{ session.hall }}
+                </p>
+
+                <p>
+                    Цена:
+                    {{ session.price }} ₽
+                </p>
+
+                <a href="{% url 'buy_ticket' session.id %}"
+                   class="btn btn-success">
+
+                    Купить билет
+
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
 
