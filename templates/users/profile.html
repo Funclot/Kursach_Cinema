@@ -14,21 +14,12 @@
 
     <div class="card-body">
 
-        <a href="{% url 'edit_profile' %}"
-           class="btn btn-primary mt-3">
-
-            Редактировать профиль
-
-        </a>
-
         {% if profile.avatar %}
-
         <img
                 src="{{ profile.avatar.url }}"
                 alt="Avatar"
                 class="img-thumbnail mb-3"
-                style="max-width: 200px;">
-
+                style="max-width: 180px;">
         {% endif %}
 
         <h4>
@@ -49,6 +40,13 @@
             <strong>О себе:</strong>
             {{ profile.bio }}
         </p>
+
+        <a href="{% url 'edit_profile' %}"
+           class="btn btn-primary mt-3">
+
+            Редактировать профиль
+
+        </a>
 
     </div>
 

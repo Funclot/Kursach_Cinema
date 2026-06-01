@@ -10,6 +10,16 @@
     Покупка билета
 </h2>
 
+{% if error %}
+
+<div class="alert alert-danger">
+
+    {{ error }}
+
+</div>
+
+{% endif %}
+
 <p>
     Фильм:
     {{ session.movie.title }}

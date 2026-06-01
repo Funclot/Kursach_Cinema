@@ -47,6 +47,23 @@ def buy_ticket(request, session_id):
             'seat_number'
         )
 
+        ticket_exists = Ticket.objects.filter(
+            session=session,
+            seat_number=seat_number
+        ).exists()
+
+        if ticket_exists:
+            context = {
+                'session': session,
+                'error': 'Это место уже занято.'
+            }
+
+            return render(
+                request,
+                'cinema/buy_ticket.html',
+                context
+            )
+
         Ticket.objects.create(
             user=request.user,
             session=session,
