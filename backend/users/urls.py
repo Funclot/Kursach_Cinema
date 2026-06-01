@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
-from .views import profile
+from .views import profile, edit_profile
+
 
 urlpatterns = [
     path(
@@ -20,5 +21,10 @@ urlpatterns = [
         'profile/',
         profile,
         name='profile'
+    ),
+    path(
+        'profile/edit/',
+        edit_profile,
+        name='edit_profile'
     ),
 ]

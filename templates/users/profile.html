@@ -14,6 +14,13 @@
 
     <div class="card-body">
 
+        <a href="{% url 'edit_profile' %}"
+           class="btn btn-primary mt-3">
+
+            Редактировать профиль
+
+        </a>
+
         {% if profile.avatar %}
 
         <img
