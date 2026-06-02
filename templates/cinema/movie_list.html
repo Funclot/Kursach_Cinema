@@ -6,21 +6,22 @@
 
 {% block content %}
 
-<h2 class="mb-4">
-    <i class="bi bi-film"></i>
-    {{ title }}
-</h2>
+
 
 <div class="row">
 
-    <div
+<div
     class="text-light p-5 rounded shadow-lg mb-5"
     style="
-        background: linear-gradient(
-            135deg,
-            #1f2937,
-            #111827
-        );
+        background:
+        linear-gradient(
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.75)
+        ),
+        url('/media/posters/interstellar.jpg');
+
+        background-size: cover;
+        background-position: center;
     ">
 
         <h1 class="display-4 fw-bold">
@@ -64,10 +65,9 @@
             </p>
 
             <a href="{% url 'movie_detail' movie.id %}"
-               class="btn btn-primary shadow-sm">
+               class="btn btn-movie shadow-sm">
                 Подробнее
             </a>
-
         </div>
 
     </div>
