@@ -17,8 +17,12 @@
     <style>
 
         .card {
-            transition: 0.3s;
             overflow: hidden;
+            background: linear-gradient(
+        to bottom,
+        #f8fafc,
+        #e2e8f0
+    );
         }
 
         .card:hover {
@@ -33,35 +37,40 @@
             #e2e8f0
             );
         }
-        <style>
-
-    .card {
-        transition: 0.3s;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-    }
-
-    .card-body {
-        background: linear-gradient(
-            to bottom,
-            #f8fafc,
-            #e2e8f0
+        .btn-custom {
+    background: linear-gradient(
+        135deg,
+        #475569,
+        #94a3b8
         );
+
+    border: none;
+    color: white;
+        }
+
+        .btn-custom:hover {
+    background: linear-gradient(
+        135deg,
+        #334155,
+        #64748b
+        );
+
+    color: white;
+        }
+    .price-tag {
+    background: linear-gradient(
+        135deg,
+        #64748b,
+        #94a3b8
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-weight: 700;
     }
 
-.btn-movie {
-    background: #dbe4f0;
-    border: 3px solid #cbd5e1;
-    color: #111827;
-    box-shadow: 0 2px 6px rgba(0,0,0,.08);
-}
 
-.btn-movie:hover {
-    background: #cbd5e1;
-    color: #111827;
-}
 
     </style>
 
