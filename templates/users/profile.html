@@ -6,10 +6,21 @@
 
 {% block content %}
 
-<h2 class="mb-4">
-    Профиль
-</h2>
+<div class="p-4 rounded shadow mb-4 text-light"
+     style="
+        background:
+        linear-gradient(
+            135deg,
+            #1f2937,
+            #111827
+        );
+     ">
 
+    <h1 class="display-5 fw-bold mb-0">
+        Профиль | {{ request.user.username }}
+    </h1>
+
+</div>
 <div class="card shadow-sm">
 
     <div class="card-body">
@@ -23,17 +34,17 @@
         {% endif %}
 
         <h4>
-            {{ request.user.username }}
+            Данные пользователя
         </h4>
 
         <p>
-            <strong>Email:</strong>
-            {{ request.user.email }}
+<strong>@</strong>
+{{ user.email }}
         </p>
 
         <p>
-            <strong>Телефон:</strong>
-            {{ profile.phone }}
+<i class="bi bi-telephone"></i>
+{{ profile.phone }}
         </p>
 
         <p>
@@ -41,10 +52,9 @@
             {{ profile.bio }}
         </p>
 
-        <p>
-            <strong>Куплено билетов:</strong>
-            {{ tickets_count }}
-        </p>
+<h5 class="price-tag">
+    Куплено билетов: {{ tickets_count }}
+</h5>
 
         <a href="{% url 'edit_profile' %}"
            class="btn btn-custom mt-3">
