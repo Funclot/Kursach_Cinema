@@ -33,6 +33,12 @@ class Movie(models.Model):
         null=True
     )
 
+    banner = models.ImageField(
+        upload_to='banners/',
+        blank=True,
+        null=True
+    )
+
     def __str__(self):
         return self.title
 

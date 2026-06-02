@@ -28,26 +28,48 @@
 
     <div class="col-md-8">
 
-        <h2>{{ movie.title }}</h2>
+{% if movie.banner %}
 
-        <hr>
+<div class="p-4 rounded mb-4 text-light shadow"
+     style="
+        background:
+        linear-gradient(
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.75)
+        ),
+        url('{{ movie.banner.url }}');
 
-        <p>
-            <strong>Жанр:</strong>
-            {{ movie.genre }}
-        </p>
+        background-size: cover;
+        background-position: center;
+     ">
 
-        <p>
-            <strong>Продолжительность:</strong>
-            {{ movie.duration }} мин.
-        </p>
+{% else %}
 
-        <p>
-            <strong>Дата выхода:</strong>
-            {{ movie.release_date }}
-        </p>
+<div class="p-4 rounded mb-4 text-light shadow"
+     style="
+        background:
+        linear-gradient(
+            135deg,
+            #1f2937,
+            #111827
+        );
+     ">
 
-        <hr>
+{% endif %}
+
+            <h1 class="display-5 fw-bold">
+                {{ movie.title }}
+            </h1>
+
+            <p class="mb-0">
+                {{ movie.genre }}
+                •
+                {{ movie.duration }} мин.
+                •
+                {{ movie.release_date|date:"Y" }}
+            </p>
+
+        </div>
 
         <h4>Описание</h4>
 
@@ -81,26 +103,27 @@
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
 
-                <strong>
+               <p class="mb-1">
+                    <i class="bi bi-calendar-event"></i>
                     {{ session.start_time|date:"d.m.Y H:i" }}
-                </strong>
+                </p>
 
-                <br>
+                <p class="mb-1">
+                    <i class="bi bi-door-open"></i>
+                    {{ session.hall }}
+                </p>
 
-                Зал: {{ session.hall }}
+                <div class="mt-auto">
 
-                <br>
+                    <h4 class="price-tag">
+                        {{ session.price }} ₽
+                    </h4>
 
-                Цена: {{ session.price }} ₽
-                <br><br>
-
-                <a href="{% url 'buy_ticket' session.id %}"
-                   class="btn btn-success btn-sm">
-
-                    Купить билет
-
-                </a>
-
+                    <a href="{% url 'buy_ticket' session.id %}"
+                       class="btn btn-custom">
+                        Купить билет
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -112,8 +135,8 @@
 
         <div class="mb-5">
             <a href="/"
-               class="btn btn-secondary mt-4">
-                К афише
+               class="btn btn-custom mt-3">
+                ← К афише
             </a>
         </div>
 
