@@ -7,21 +7,46 @@
 {% block content %}
 
 <h2 class="mb-4">
+    <i class="bi bi-film"></i>
     {{ title }}
 </h2>
 
 <div class="row">
 
-{% for movie in movies %}
+    <div
+    class="text-light p-5 rounded shadow-lg mb-5"
+    style="
+        background: linear-gradient(
+            135deg,
+            #1f2937,
+            #111827
+        );
+    ">
 
-<div class="col-md-4 mb-4">
+        <h1 class="display-4 fw-bold">
+            CinemaHub
+        </h1>
+
+        <p class="lead">
+            Покупайте билеты на любимые фильмы онлайн
+        </p>
+
+    </div>
+
+
+    {% for movie in movies %}
+
+
+
+    <div class="col-md-4 mb-4">
 
     <div class="card h-100 shadow-sm">
 
         {% if movie.poster %}
-            <img src="{{ movie.poster.url }}"
-                 class="card-img-top"
-                 alt="{{ movie.title }}">
+        <img src="{{ movie.poster.url }}"
+             class="card-img-top"
+             alt="{{ movie.title }}"
+             style="height: 500px; object-fit: cover;">
         {% endif %}
 
         <div class="card-body">
