@@ -6,136 +6,154 @@
 
 {% block content %}
 
-<div class="row">
+{% if movie.banner %}
 
-    <div class="col-md-4">
+<div class="container-fluid px-0">
 
-        {% if movie.poster %}
-            <img src="{{ movie.poster.url }}"
-                 class="img-fluid rounded shadow"
-                 alt="{{ movie.title }}">
-        {% else %}
+<div class="movie-hero text-light shadow mb-5"
+     style="
+        background:
+        linear-gradient(
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.75)
+        ),
+        url('{{ movie.banner.url }}');
 
-            <div class="card">
-                <div class="card-body text-center">
-                    Постер отсутствует
-                </div>
+        background-size: cover;
+        background-position: center;
+     ">
+
+{% else %}
+
+<div class="rounded shadow mb-5 text-light"
+     style="
+        background:
+        linear-gradient(
+            135deg,
+            #1f2937,
+            #111827
+        );
+     ">
+
+{% endif %}
+
+    <div class="container-fluid px-5 py-5">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-3">
+
+                {% if movie.poster %}
+
+                <img src="{{ movie.banner.url }}"
+                     class="img-fluid rounded shadow"
+                     alt="{{ movie.title }}">
+
+                {% endif %}
+
             </div>
 
-        {% endif %}
+            <div class="col-md-9">
 
-    </div>
+                <h1 class="display-2 fw-bold">
+                    {{ movie.title }}
+                </h1>
 
-    <div class="col-md-8">
+                <p class="lead mb-4">
+                    {{ movie.genre }}
+                    •
+                    {{ movie.duration }} мин.
+                    •
+                    {{ movie.release_date|date:"Y" }}
+                </p>
 
-        {% if movie.banner %}
+                {% if movie.sessions.first %}
 
-        <div class="p-5 rounded mb-4 text-light shadow"
-             style="
-                background:
-                linear-gradient(
-                    rgba(0,0,0,0.75),
-                    rgba(0,0,0,0.75)
-                ),
-                url('{{ movie.banner.url }}');
+                <a href="{% url 'buy_ticket' movie.sessions.first.id %}"
+                   class="btn btn-custom me-2">
 
-                background-size: cover;
-                background-position: center;
-                min-height: 180px;
-             ">
+                    Купить билет
 
-        {% else %}
+                </a>
 
-        <div class="p-5 rounded mb-4 text-light shadow"
-             style="
-                background:
-                linear-gradient(
-                    135deg,
-                    #1f2937,
-                    #111827
-                );
-                min-height: 180px;
-             ">
+                {% endif %}
 
-        {% endif %}
+                {% if movie.trailer_url %}
 
-            <h1 class="display-4 fw-bold">
-                {{ movie.title }}
-            </h1>
+                <a href="{{ movie.trailer_url }}"
+                   target="_blank"
+                   class="btn btn-outline-light">
 
-            <p class="mb-0">
-                {{ movie.genre }}
-                •
-                {{ movie.duration }} мин.
-                •
-                {{ movie.release_date|date:"Y" }}
-            </p>
+                    Смотреть трейлер
+
+                </a>
+
+                {% endif %}
+
+            </div>
 
         </div>
 
-            <div class="card shadow-sm mb-4">
+    </div>
 
-                <div class="card-body">
-                    {% if movie.trailer_url %}
+</div>
 
-
-
-                    <h4 class="mb-3">
-                        Трейлер
-                    </h4>
-
-                    <div class="ratio ratio-16x9">
-
-                        <iframe
-                                src="{{ movie.trailer_url }}"
-                                title="Trailer"
-                                allowfullscreen>
-                        </iframe>
-
-                    </div>
-
-                    {% endif %}
-
-                    <hr>
-                    <h4 class="mb-3">
-                        Описание
-                    </h4>
-
-                    <p>
-                        {{ movie.description }}
-                    </p>
+    <div class="container">
 
 
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body p-4">
+
+        <h3 class="mb-3">
+            Сюжет
+        </h3>
+
+        <p class="mb-0 lh-lg">
+            {{ movie.description }}
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body"
+         style="
+            background:#e2e8f0;
+            border-radius: 0.375rem;
+         ">
+        <h3 class="mb-4">
+            Сеансы
+        </h3>
 
         {% for session in movie.sessions.all %}
 
-<hr>
-                    <h4 class="mb-3">
-                        Сеансы
-                    </h4>
+        <div class="mb-4">
 
-                <p class="mb-1">
-                    <i class="bi bi-calendar-event"></i>
-                    {{ session.start_time|date:"d.m.Y H:i" }}
-                </p>
+            <p class="mb-1">
+                <i class="bi bi-calendar-event"></i>
+                {{ session.start_time|date:"d.m.Y H:i" }}
+            </p>
 
-                <p class="mb-3">
-                    <i class="bi bi-door-open"></i>
-                    {{ session.hall }}
-                </p>
+            <p class="mb-2">
+                <i class="bi bi-door-open"></i>
+                {{ session.hall }}
+            </p>
 
-                <h4 class="price-tag">
-                    {{ session.price }} ₽
-                </h4>
-
-                <a href="{% url 'buy_ticket' session.id %}"
-                   class="btn btn-custom">
-                    Купить билет
-                </a>
+            <h4 class="price-tag">
+                {{ session.price }} ₽
+            </h4>
 
 
 
+        </div>
 
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
 
         {% empty %}
 
@@ -143,24 +161,23 @@
 
         {% endfor %}
 
-
-                </div>
-
-            </div>
-
-
-
-        <div class="mb-5">
-
-            <a href="/"
-               class="btn btn-back">
-                ← К афише
-            </a>
-
-        </div>
-
     </div>
 
+</div>
+
+
+<div class="mb-5">
+
+    <a href="/"
+       class="btn btn-back">
+
+        ← К афише
+
+    </a>
+
+</div>
+
+    </div>
 </div>
 
 {% endblock %}
