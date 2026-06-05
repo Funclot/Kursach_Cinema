@@ -6,62 +6,147 @@
 
 {% block content %}
 
-<div class="p-4 rounded shadow mb-4 text-light"
+<div class="movie-hero text-light rounded shadow mb-4"
      style="
         background:
         linear-gradient(
             135deg,
-            #1f2937,
-            #111827
+            rgba(31,41,55,.95),
+            rgba(17,24,39,.95)
         );
      ">
 
-    <h1 class="display-5 fw-bold mb-0">
-        Профиль | {{ request.user.username }}
-    </h1>
+    <div class="p-5 text-center">
+
+        <h1 class="display-4 fw-bold">
+            Профиль
+        </h1>
+
+        <p class="lead mb-0">
+            {{ user.username }} • CinemaHub
+        </p>
+
+    </div>
 
 </div>
-<div class="card shadow-sm">
 
-    <div class="card-body">
 
-        {% if profile.avatar %}
-        <img
-                src="{{ profile.avatar.url }}"
-                alt="Avatar"
-                class="img-thumbnail mb-3"
-                style="max-width: 180px;">
-        {% endif %}
+<div class="row">
 
-        <h4>
-            Данные пользователя
-        </h4>
+    <div class="col-md-6 mb-4">
 
-        <p>
-<strong>@</strong>
-{{ user.email }}
-        </p>
+        <div class="card shadow-sm h-100">
 
-        <p>
-<i class="bi bi-telephone"></i>
-{{ profile.phone }}
-        </p>
+            <div class="card-body p-4">
 
-        <p>
-            <strong>О себе:</strong>
-            {{ profile.bio }}
-        </p>
+                <div class="text-center">
 
-<h5 class="price-tag">
-    Куплено билетов: {{ tickets_count }}
-</h5>
+                    {% if profile.avatar %}
 
-        <a href="{% url 'edit_profile' %}"
-           class="btn btn-custom mt-3">
+                    <img src="{{ profile.avatar.url }}"
+                         class="rounded-circle shadow mb-3"
+                         width="180"
+                         height="180"
+                         style="object-fit: cover;">
 
-            Редактировать профиль
+                    {% else %}
 
-        </a>
+                    <img src="https://via.placeholder.com/180"
+                         class="rounded-circle shadow mb-3">
+
+                    {% endif %}
+
+                    <h3 class="fw-bold">
+                        {{ user.username }}
+                    </h3>
+
+                </div>
+
+                <hr>
+
+                <div class="text-start">
+
+                    <h5 class="mb-3">
+                        О себе
+                    </h5>
+
+                    <p class="text-muted">
+
+                        {% if profile.bio %}
+                            {{ profile.bio }}
+                        {% else %}
+                            Информация отсутствует
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="mt-4 text-start">
+
+                    <a href="{% url 'edit_profile' %}"
+                       class="btn btn-custom">
+
+                        <i class="bi bi-pencil-square"></i>
+                        Редактировать профиль
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body p-4">
+
+                <h3 class="mb-4">
+                    Информация о пользователе
+                </h3>
+
+                <hr>
+
+                <p>
+                    <strong>@ Email</strong><br>
+                    {{ user.email }}
+                </p>
+
+                <p>
+                    <i class="bi bi-telephone-fill">
+                    <strong> Телефон</strong><br>
+
+                    {% if profile.phone %}
+                        {{ profile.phone }}
+                    {% else %}
+                        Не указан
+                    {% endif %}
+                    </i>
+                </p>
+
+                <p>
+                    <i class="bi bi-ticket-detailed-fill">
+                    <strong> Куплено билетов</strong><br>
+                    {{ tickets_count }}
+                    </i>
+                </p>
+
+                <p>
+                    <i class="bi bi-person-circle">
+                    <strong> Логин</strong><br>
+                    {{ user.username }}
+                    </i>
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
