@@ -112,24 +112,12 @@
         <p class="mb-0 lh-lg">
             {{ movie.description }}
         </p>
-
-    </div>
-
-</div>
-
-
-<div class="card shadow-sm mb-4">
-
-    <div class="card-body"
-         style="
-            background:#e2e8f0;
-            border-radius: 0.375rem;
-         ">
+<hr>
         <h3 class="mb-4">
             Сеансы
         </h3>
 
-        {% for session in movie.sessions.all %}
+        {% for session in sessions %}
 
         <div class="mb-4">
 
@@ -161,10 +149,10 @@
 
         {% endfor %}
 
+
     </div>
 
 </div>
-
 
 <div class="mb-5">
 

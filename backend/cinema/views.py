@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from .models import Movie, Session, Ticket
 
@@ -19,13 +20,19 @@ def movie_list(request):
     )
 
 def movie_detail(request, movie_id):
+
     movie = get_object_or_404(
         Movie,
         pk=movie_id
     )
 
+    sessions = movie.sessions.filter(
+        start_time__gte=timezone.now()
+    )
+
     context = {
-        'movie': movie
+        'movie': movie,
+        'sessions': sessions,
     }
 
     return render(
@@ -33,6 +40,7 @@ def movie_detail(request, movie_id):
         'cinema/movie_detail.html',
         context
     )
+
 @login_required
 def buy_ticket(request, session_id):
 
@@ -86,7 +94,8 @@ def buy_ticket(request, session_id):
 def my_tickets(request):
 
     tickets = Ticket.objects.filter(
-        user=request.user
+        user=request.user,
+        session__start_time__gte=timezone.now()
     ).order_by('-purchase_date')
 
     context = {
@@ -102,8 +111,9 @@ def session_list(request):
 
     sessions = Session.objects.select_related(
         'movie'
+    ).filter(
+        start_time__gte=timezone.now()
     ).order_by('start_time')
-
     context = {
         'sessions': sessions
     }
