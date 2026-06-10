@@ -4,7 +4,8 @@ from .views import (
     movie_detail,
     buy_ticket,
     my_tickets,
-    session_list
+    session_list,
+    cancel_ticket
 )
 
 urlpatterns = [
@@ -31,5 +32,10 @@ urlpatterns = [
         'sessions/',
         session_list,
         name='session_list'
+    ),
+    path(
+        'ticket/<int:ticket_id>/cancel/',
+        cancel_ticket,
+        name='cancel_ticket'
     ),
 ]

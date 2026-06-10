@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import ProfileForm
 
-
 from .models import Profile
 
 
@@ -59,3 +58,4 @@ def edit_profile(request):
         'users/edit_profile.html',
         context
     )
+

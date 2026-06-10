@@ -109,13 +109,35 @@ def my_tickets(request):
     )
 def session_list(request):
 
-    sessions = Session.objects.select_related(
-        'movie'
-    ).filter(
+    selected_date = request.GET.get('date')
+
+    future_sessions = Session.objects.filter(
         start_time__gte=timezone.now()
     ).order_by('start_time')
+
+    first_session = future_sessions.first()
+
+    nearest_date = None
+
+    if first_session:
+        nearest_date = first_session.start_time.date()
+
+    if selected_date:
+
+        sessions = Session.objects.select_related(
+            'movie'
+        ).filter(
+            start_time__date=selected_date
+        ).order_by('start_time')
+
+    else:
+
+        sessions = future_sessions
+
     context = {
-        'sessions': sessions
+        'sessions': sessions,
+        'selected_date': selected_date,
+        'nearest_date': nearest_date
     }
 
     return render(
@@ -123,3 +145,16 @@ def session_list(request):
         'cinema/session_list.html',
         context
     )
+
+@login_required
+def cancel_ticket(request, ticket_id):
+
+    ticket = get_object_or_404(
+        Ticket,
+        pk=ticket_id,
+        user=request.user
+    )
+
+    ticket.delete()
+
+    return redirect('my_tickets')

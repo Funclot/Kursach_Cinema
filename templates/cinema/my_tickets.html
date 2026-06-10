@@ -40,6 +40,11 @@
             {{ ticket.session.price }} ₽
         </p>
 
+        <a href="{% url 'cancel_ticket' ticket.id %}"
+           class="btn btn-danger btn-sm">
+            Отменить билет
+        </a>
+
     </div>
 
 </div>

@@ -136,10 +136,14 @@
                 Мои билеты
             </a>
 
+            {% if user.is_staff %}
+
             <a class="nav-link" href="/admin/">
                 <i class="bi bi-gear"></i>
                 Админка
             </a>
+
+            {% endif %}
             <a class="nav-link" href="{% url 'session_list' %}">
                 <i class="bi bi-film"></i>
                 Сеансы
