@@ -6,7 +6,7 @@
 - **Средняя частота:** 15.6 коммита/неделю
 
 ### График активности
-[Активность коммитов](docs/images/git-commit-activity.png)
+[Активность коммитов](docs/images/git-commit-activity.PNG)
 
 ### Тепловая карта
-[Распределение по времени](docs/images/git-punch-card.png)
+[Распределение по времени](docs/images/git-punch-card.PNG)
